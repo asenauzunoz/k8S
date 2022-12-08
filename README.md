@@ -1,2 +1,2 @@
-# K8S TEMELLERİ
+# K8S
   
