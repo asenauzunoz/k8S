@@ -54,9 +54,44 @@
       minikube addons list
       minikube start -p aged --kubernetes-version=v1.16.1
       minikube delete --all
- 
       
+  ## Install for macOS
+  
+  #### Son sürüm için:
+  
+      curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl.sha256”
       
+  #### Belirli bir sürüm indirilecekse eğer: -> ..release/$(istenilen sürüm linki) 
+  exp:
+     
+      curl -LO "https://dl.k8s.io/release/v1.26.0/bin/darwin/amd64/kubectl"
+      
+  #### .kubectl dosyasının çalıştırılabilir olması için yetki 
+
+      chmod +x ./kubectl
+      
+  #### .kubectl dosyasını local sistem pathine taşıyoruz
+  
+  NOTE: /usr/local/bin dosya yolunun olduğundan emin olalım.
+     
+     sudo mv ./kubectl /usr/local/bin/kubectl
+     sudo chown root: /usr/local/bin/kubectl
+     
+  #### Yüklenen sürümün güncelliğinden kontrol
+  
+     kubectl version --client
+  
+  #### Daha detaylı versiyon çıktısı için
+  
+      kubectl version --client --output=yaml
+      
+:exclamation: zsh: bad CPU type in executable: kubectl -> bu şekilde bir hata ile karşılaşılırsa eğer:
+
+:high_brightness: macOS, Apple silikon için üretilmemiş bir uygulamayı çalıştırmayı denediğinde, uygulamayı otomatik olarak Apple silikona çevirmek için Rosetta 2'yi yüklemenizi ister. Terminal'de, eski mimari komut satırı araçlarını çalıştırmak için eksik Rosetta için otomatik algılama yoktur.
+  
+      softwareupdate --install-rosetta
+  
+    
  
       
     
